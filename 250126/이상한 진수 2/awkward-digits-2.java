@@ -1,40 +1,27 @@
-import java.util.*;
-import java.lang.*;
+import java.io.*;
 
 public class Main {
-    public static int S(int[] num){
-            int sum = 0;
-            for (int i = 0; i < num.length; i++){
-                if (num[i] == 1){
-                    sum += (int) Math.pow(2, (num.length -1) - i);
-                }
-            }
-            return sum;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char[] arr = br.readLine().toCharArray(); // 입력값을 문자 배열로 변환
+        int max = 0;
+
+        // 모든 자리를 바꿔가며 최대값 계산
+        for (int i = 0; i < arr.length; i++) {
+            // 현재 자리 반전
+            arr[i] = (arr[i] == '0') ? '1' : '0';
+
+            // 2진수 문자열을 10진수로 변환
+            String str = new String(arr);
+            int num = Integer.parseInt(str, 2); // 2진수 문자열 -> 10진수 변환
+
+            // 최댓값 갱신
+            max = Math.max(max, num);
+
+            // 원래 값으로 복구
+            arr[i] = (arr[i] == '0') ? '1' : '0';
         }
 
-        public static int maxValue(int[] num) {
-            int max = Integer.MIN_VALUE;
-            for (int i = 0; i < num.length; i++){
-                if (num[i] == 0) {
-                    num[i] = 1 - num[i];
-                    int result = S(num);
-                    max = Math.max(max, result);
-                    num[i] = 1 - num[i];
-                }
-            }
-            return max;
-        }
-
-        public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            String line = sc.nextLine();
-
-            char[] c = line.toCharArray();
-            int[] arr = new int[line.length()];
-
-            for (int i = 0; i < c.length; i++){
-                arr[i] = Character.getNumericValue(c[i]);
-            }
-            System.out.println(maxValue(arr));
-        }
+        System.out.println(max);
     }
+}
