@@ -22,6 +22,7 @@ class Main {
 
         Queue<Position> queue = new LinkedList<>();
         queue.offer(new Position(0, 0));
+        visited[0][0] = true;
 
         while(!queue.isEmpty()){
             Position position = queue.poll();
