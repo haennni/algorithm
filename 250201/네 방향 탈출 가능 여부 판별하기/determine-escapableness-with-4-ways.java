@@ -28,9 +28,6 @@ class Main {
 
             if (position.y == map.length - 1 && position.x == map[0].length - 1) return 1;
 
-            if (visited[position.y][position.x]) continue;
-            visited[position.y][position.x] = true;
-
             for (int i = 0; i < 4; i++){
                 if (canGo(position, i)) queue.offer(new Position(position.y + dy[i],position.x + dx[i]));
             }
@@ -41,9 +38,20 @@ class Main {
     public static boolean canGo(Position position, int num){
         if (position.y + dy[num] < map.length && position.x + dx[num] < map[0].length &&
             position.x + dx[num] >= 0 && position.y + dy[num] >= 0){
-            return map[position.y + dy[num]][position.x + dx[num]] == 1;
+            if (isVisited(position.y + dy[num], position.x + dx[num])){
+                return map[position.y + dy[num]][position.x + dx[num]] == 1;
+            }
         }
         return false;
+    }
+
+    public static boolean isVisited(int y, int x){
+        if (visited[y][x]){
+            return false;
+        }else{
+            visited[y][x] = true;
+            return true;
+        }
     }
 
     public static void main(String[] args) {
