@@ -13,8 +13,8 @@ class Position{
 public class Main {
     static int[][] map;
     static boolean[][] visited;
-    static int[] dx = new int[]{1, 0};
-    static int[] dy = new int[]{0, 1};
+    static int[] dx = new int[]{0, 1};
+    static int[] dy = new int[]{1, 0};
 
     public static int run(){
         visited[0][0] = true;
@@ -32,7 +32,9 @@ public class Main {
             if (canGo(ny, nx)){
                 if (isVisited(ny, nx)){
                     visited[ny][nx] = true;
-                    return dfs(new Position(ny, nx));
+                    if (dfs(new Position(ny, nx)) == 1) {
+                        return 1;
+                    }
                 }
             }
             
@@ -44,7 +46,7 @@ public class Main {
         /* 범위 */
         if (nx < 0 || ny < 0 || nx >= map[0].length || ny >= map.length) return false;
 
-        /* 1인 곳은 못감 */
+        /* 0인 곳은 못감 */
         if (map[ny][nx] == 0) return false;
 
         return true;
