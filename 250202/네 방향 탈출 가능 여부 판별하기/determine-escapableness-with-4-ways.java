@@ -36,6 +36,7 @@ class Main {
                 if (canGo(ny, nx)) {
                     visited[ny][nx] = true;
                     queue.offer(new Position(ny, nx));
+
                 }
 
             }
