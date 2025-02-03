@@ -14,7 +14,7 @@ public class Main {
     static int[][] map;
     static int max = Integer.MIN_VALUE;
     static int safety;
-    static int K;
+    static int K = 1;
     static boolean[][] visited;
     static int[] dx = {0, 1, 0, -1};
     static int[] dy = {-1, 0, 1, 0};
