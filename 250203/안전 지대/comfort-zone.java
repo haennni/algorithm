@@ -36,8 +36,11 @@ public class Main {
                     }
                 }
             }
-            safety = Math.max(safety, count);
-            if (safety == count) K = i;
+            if (safety < count){
+                safety = Math.max(safety, count);
+                 K = i;
+            }
+
         }
         return K + " " + safety;
     }
