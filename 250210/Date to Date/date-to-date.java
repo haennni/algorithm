@@ -5,10 +5,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int mon = sc.nextInt();
-        int day = sc.nextInt();
+        int day = sc.nextInt(); //23
         
         int end_mon = sc.nextInt();
-        int end_day = sc.nextInt();
+        int end_day = sc.nextInt(); //30
         int result = 1;
 
         int[] mon_days = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -19,7 +19,10 @@ public class Main {
             day = 0;
         }
 
-        result += end_day;
+        if (mon == end_mon) {
+            result += end_day - day;
+        }
+    
 
         System.out.println(result);
     }
