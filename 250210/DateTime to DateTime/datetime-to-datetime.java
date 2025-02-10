@@ -4,36 +4,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int end_day = sc.nextInt(); //12일
-        int end_hour = sc.nextInt(); //12시
+        int end_hour = sc.nextInt(); //24시
         int end_mins = sc.nextInt(); //04
 
         int day = 11;
         int hour = 11;
         int mins = 11;
-        int result = 0;
 
-        while(!(day == end_day && hour == end_hour && mins == end_mins)){
-            mins++;
-            result++;
-        
-            if (end_day < day) {
-                if (end_hour < end_hour){
-                    if(end_mins < mins){
-                        result = -1;
-                    }
-                }
-            }
+        int result = ((end_day * 24 * 60) + (end_hour * 60) + (end_mins)) - ((day * 24 * 60) + (hour * 60) + mins);
 
-            if(mins == 60){
-                hour++;
-                mins = 0;
-            }
-
-            if(hour == 24){
-                day++;
-                hour = 0;
-            }
+        if (result < 0){
+            System.out.println(-1);
+        }else{
+            System.out.println(result);
         }
-        System.out.println(result);
     }
 }
