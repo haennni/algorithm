@@ -1,10 +1,9 @@
 import java.util.*;
 public class Main {
-    static int[] arr = new int[20];
+    static int[] arr = new int[100];
     static int size = 0;
 
-    /*2진수*/
-    public static int binary(String str){
+    public static int decimal(String str){
 
         int result = 0;
         size = str.length();
@@ -18,11 +17,11 @@ public class Main {
         return result;
     }
 
-    public static void decimal(int num){
+    public static void binary(int num){
         StringBuilder sb = new StringBuilder();
         int result = num * 17;
         int n = 0;
-        int[] binaryArr = new int[20];
+        int[] binaryArr = new int[100];
 
         while(result > 1){
             binaryArr[n] = result % 2;
@@ -45,7 +44,7 @@ public class Main {
 
         String str = sc.nextLine();
 
-        int binary = binary(str);
-        decimal(binary);
+        int decimal = decimal (str);
+        binary(decimal);
     }
 }
