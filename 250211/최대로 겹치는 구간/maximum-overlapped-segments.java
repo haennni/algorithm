@@ -10,7 +10,7 @@ public class Main {
         for (int i = 0; i < size; i++){
             int num1 = sc.nextInt() + 100;
             int num2 = sc.nextInt() + 100;
-            for (int j = num1; j < num2; j++){
+            for (int j = num1; j < num2 + 1; j++){
                 arr[j] += 1;
             }
         }
