@@ -1,52 +1,39 @@
 import java.util.*;
-/*
-123
-234
-567
-890
-
-
-int a = 1
-int size = str.length();
-
-for (int i = size; i < 0; i- ){ //3번 돌음
-
-    for (int j = 0; ㅓ < size; i++) //  size만큼
-        int min = j
-        for (int k = j + 1; j > 0; j--){
-            if (arr[min] > int[k])
-            min = k;
-        }
-        int temp = int[i];
-        int[i] = arr[min];
-        arr[min] = temp;
-
-}
-*/
-
 
 public class Main {
+    public static int getDigitValue(String num, int index, int maxLen) {
+        int diff = maxLen - num.length(); 
+        if (index < diff) return 0;  // 자릿수가 부족하면 0을 반환
+        return Character.getNumericValue(num.charAt(index - diff));  // 해당 자릿수의 값 반환
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int size = sc.nextInt();
         String[] arr = new String[size];
+        int strSize = 0;
 
         for (int i = 0; i < arr.length; i++){
             arr[i] = sc.next();
         }
 
-        int strSize = arr[0].length();
+        int maxLen = 0;
+        for (String s : arr) {
+            maxLen = Math.max(maxLen, s.length());
+        }
 
         int min = 0;
-
-        for (int i = strSize; i > 0; i-- ){ //3번 돌음
+        for (int i = maxLen - 1; i >= 0; i-- ){ //3번 돌음
             for (int j = 0; j < arr.length - 1; j++){//  size만큼
                 min = j;
                 for (int k = j + 1; k < arr.length; k++){
-                    if (Character.getNumericValue(arr[min].charAt(i - 1)) > Character.getNumericValue(arr[k].charAt(i - 1)))
-                    min = k;
-                }
+                    int num1 = getDigitValue(arr[min], i, maxLen); //가장 작은 값, 현재 인덱스, 가장 큰 값
+                    int num2 = getDigitValue(arr[k], i, maxLen);
+                    if (num1 > num2) {
+                        min = k;
+                    }
+            }
                 String temp = arr[j];
                 arr[j] = arr[min];
                 arr[min] = temp;
