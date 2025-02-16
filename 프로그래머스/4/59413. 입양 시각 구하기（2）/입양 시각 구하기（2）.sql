@@ -1,0 +1,22 @@
+-- 몇 시에 입양이 가장 활발하게 일어나는 지 알아보기
+-- 1. 0시부터 23시까지 시간대별로 입양이 몇 건이나 발생했는지
+-- 2. 0부터 23까지 재귀함수를 통해서 HOUR이라는 컬럼을 생성
+-- 3. GROUP BY로 DATETIME을 그룹화하고 HOUR(DATETIME)의 COUNT를 COUNT
+-- 4. JOIN LEFT를 통해서 TIME테이블을 ANIMAL_OUTS 테이블에 넣음
+
+/*재귀*/
+WITH RECURSIVE TIME AS (
+    SELECT 0 AS HOUR
+    UNION ALL
+    SELECT HOUR + 1
+    FROM TIME 
+    WHERE HOUR < 23
+)
+
+
+SELECT T.HOUR, COUNT(A.ANIMAL_ID) AS COUNT
+FROM TIME AS T
+LEFT JOIN ANIMAL_OUTS AS A ON (T.HOUR = HOUR(A.DATETIME))
+
+GROUP BY T.HOUR
+ORDER BY T.HOUR
