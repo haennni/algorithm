@@ -1,0 +1,3 @@
+-- 코드를 입력하세요
+SELECT COUNT(DISTINCT NAME) as animal
+FROM ANIMAL_INS
