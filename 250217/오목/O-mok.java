@@ -14,7 +14,7 @@ public class Main {
             }
         }
         //System.out.println("[]" + );
-        for (int i = 0; i < 18; i++){
+        for (int i = 0; i < 19; i++){
             if (win){
                     break;
             }
