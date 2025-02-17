@@ -13,17 +13,11 @@ public class Main {
         for (int i = 0; i < size; i++){ //i는 방 증가
             int sum = 0;
             for (int j = 0; j < size; j++){ //j는 현재 거리 증가
-                if (i + j >= size ){
-                    for (int k = 0; k < recycle; k++) {
-                        sum += room[k] * j;
-                    }
-                }else {
-                    sum += room[i + j] * j;
+                int roomNumberIndex = (i + j) % size;
+                    sum += room[roomNumberIndex] * j;
                 }
-            }
             min = Math.min(min, sum);
-            recycle++;
-        }
+        }ㅁ
         System.out.println(min);
     }
 }
