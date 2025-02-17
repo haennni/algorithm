@@ -109,7 +109,8 @@ public class Main {
             }
         }
         System.out.println(win_color);
-        System.out.println(win_map[0][1] + " " + win_map[1][0]);
-
+        if (win_color != 0){
+            System.out.println(win_map[0][1] + " " + win_map[1][0]);
+        }
     }
 }
