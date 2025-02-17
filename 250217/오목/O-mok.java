@@ -14,11 +14,11 @@ public class Main {
             }
         }
         //System.out.println("[]" + );
-        for (int i = 0; i < 19; i++){
+        for (int i = 0; i < 18; i++){
             if (win){
                     break;
             }
-            for (int k = 0; k < 19; k++){   //한 칸씩 전진
+            for (int k = 0; k < 18; k++){   //한 칸씩 전진
                 if (win){
                     break;
                 }
@@ -67,7 +67,7 @@ public class Main {
                 }
                 count = 0;
                 for (int w = 1; w < 5; w++){ //대각선 검사
-                    if (k + w > 18){
+                    if (k + w > 18 || i + w > 18){
                         break;
                     }
                     if (map[i + w][k + w] != point || point == 0){
@@ -79,6 +79,30 @@ public class Main {
                         win_color = point;
                         win_map[0][1] = i + w - 1;
                         win_map[1][0] = k + w - 1;
+                        win = true;
+                    }
+                }
+                count = 0;
+                for (int f = 1; f < 5; f++){ //대각선 검사
+                    if (i + f >= 19 || k - f < 0) {
+                        break;
+                    }
+                    if (point == 0) {
+                            break;
+                        }
+
+                    if (map[i + f][k - f] != point){
+                        break;
+                    }else {
+                        //System.out.println("[대각선 검사 중 포인트 찾음] point = " + point + ",[현재] point =" + map[i - f][k - f] + "[좌표] =" + i + k + f);
+                    }
+                    count++;
+                    
+                    if (count == 4){
+                        win_color = point;
+                        //System.out.println("[대각선 검사 중 포인트 다름] point = " + point + "[현재] point =" + map[i - f][k - f]);
+                        win_map[0][1] = i + f - 1;
+                        win_map[1][0] = k - 1;
                         win = true;
                     }
                 }
