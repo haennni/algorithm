@@ -17,7 +17,7 @@ public class Main {
                     sum += room[roomNumberIndex] * j;
                 }
             min = Math.min(min, sum);
-        }ㅁ
+        }
         System.out.println(min);
     }
 }
