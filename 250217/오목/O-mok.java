@@ -65,6 +65,23 @@ public class Main {
                         win = true;
                     }
                 }
+                count = 0;
+                for (int w = 1; w < 5; w++){ //대각선 검사
+                    if (k + w > 18){
+                        break;
+                    }
+                    if (map[i + w][k + w] != point || point == 0){
+                        break;
+                    }
+                    count++;
+                    
+                    if (count == 4){
+                        win_color = point;
+                        win_map[0][1] = i + w - 1;
+                        win_map[1][0] = k + w - 1;
+                        win = true;
+                    }
+                }
             }
         }
         System.out.println(win_color);
