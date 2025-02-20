@@ -2,11 +2,10 @@ import java.util.HashSet;
 
 class Solution {
     public static int solution(int[] nums) {
-        int able = nums.length / 2;
         HashSet<Integer> set = new HashSet<>();
 
         for (int num : nums) {
-            if (set.size() < able){
+            if (set.size() < nums.length / 2){
                 set.add(num);
             }
         }
