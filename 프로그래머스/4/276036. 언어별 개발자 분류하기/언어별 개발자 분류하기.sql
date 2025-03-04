@@ -1,0 +1,25 @@
+WITH TBL1 AS (
+    SELECT SUM(CODE) AS FrontCode
+    FROM SKILLCODES
+    WHERE CATEGORY = 'Front End'),
+
+    TBL2 AS (
+    SELECT
+        CASE
+            WHEN (SKILL_CODE & (SELECT FrontCode FROM TBL1)) > 0
+            AND (SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'Python')) > 0 THEN 'A'
+            WHEN (SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'C#')) > 0 THEN 'B'
+            WHEN (SKILL_CODE & (SELECT FrontCode FROM TBL1)) > 0 THEN 'C'
+            ELSE NULL
+        END AS GRADE,
+        ID,
+        EMAIL
+    FROM
+        DEVELOPERS
+    ORDER BY
+        GRADE ASC,
+        ID ASC)
+
+SELECT *
+FROM TBL2
+WHERE GRADE IS NOT NULL;
